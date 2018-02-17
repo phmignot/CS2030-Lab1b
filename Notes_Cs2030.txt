@@ -1,0 +1,29 @@
+
+
+Event class = extract class 
+3 subclass
+
+
+
+1.labone
+
+2.Simulation
+shop 
+server
+custo
+custoqueue
+
+3.simulator
+
+event
+qrrivqlevemt
+serveevemt
+doneevent
+
+
+
+
+
+
+
+
