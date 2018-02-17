@@ -1,14 +1,18 @@
 public class Customer {
     private final int id;
+    private static int lastCustomerId;
     private Server serverAssigned;
     private double arrivalTime;
     private double waitingTime;
 
     // Stop- watch 
     
-    public Customer(int id){
-        this.id = id;
+    public Customer(){
         this.serverAssigned = null;
+        this.id = lastCustomerId;
+        lastCustomerId++;
+        arrivalTime = -1.0;
+        waitingTime = -1.0;
     }
 
 

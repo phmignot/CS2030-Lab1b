@@ -13,6 +13,7 @@ public class Simulator {
     // The next two members are used to store scheduled events
     private Event[] events; // Array of events, order of events not guaranteed.
     private int numOfEvents; // The number of events in the event array.
+    private Shop shop;
      /** to the server
     // The next three members are used to record the states of the simulation
     private boolean customerBeingServed; // is a customer currently being served?
@@ -38,6 +39,7 @@ public class Simulator {
     public Simulator() {
         this.events = new Event[this.MAX_NUMBER_OF_EVENTS];
         this.numOfEvents = 0;
+        this.shop = new Shop(5);
         /**this.customerWaiting = false;
         this.customerBeingServed = false;
         this.lastCustomerId = 0;
@@ -45,24 +47,6 @@ public class Simulator {
         this.waitingCustomerId = -1;
          */
     }
-
-    /** To stats
-     * varius methods to return the results
-     * @return totalWaitingTime _ totalNumOfServedCustomer _ totalNumOfLostCustomer
-     
-
-    public double getTotalWaitingTime(){
-        return totalWaitingTime;
-    }
-
-    public int getTotalNumOfServedCustomer(){
-        return totalNumOfServedCustomer;
-    }
-
-    public int getTotalNumOfLostCustomer(){
-        return totalNumOfLostCustomer;
-    }
-*/
     
     /**
      * Schedule the event with the simulator.  The simulator maintains
@@ -72,7 +56,6 @@ public class Simulator {
      * @return true if the event is added successfully; false otherwise.
      */
     public boolean scheduleEventInSimulator(Event e) {
-        /**
         if (this.numOfEvents >= this.MAX_NUMBER_OF_EVENTS) {
             return false;
         } else {
@@ -80,23 +63,26 @@ public class Simulator {
             this.events[this.numOfEvents] = e;
             this.numOfEvents++;
             return true;
-        }*/
-        return false;
+        }
     }
 
     /**
      * Run the simulator until there is no more events scheduled.
      */
-/*
+
     public void runSimulator() {
         while (this.numOfEvents > 0) {
             Event e = this.getNextEarliestEvent();
-            this.simulateEvent(e);
+            Event resultEvent = e.run(shop);
+            boolean isAdd = scheduleEventInSimulator(resultEvent);
+            if (!isAdd) {
+                System.err.println("Warning: too many events.  " +
+                        "Simulation result will not be correct.");
+            }
         }
-        Stats.printStats();
-        
+        //Stats.printStats();
     }
-*/
+
     /**
      * Find the next event with the earliest timestamp, breaking
      * ties arbitrarily.  The event is then deleted from the array.
@@ -105,7 +91,7 @@ public class Simulator {
      *
      * @return the next event
      */
-/*
+
     private Event getNextEarliestEvent() {
         int nextEventIndex = -1;
 
@@ -128,7 +114,7 @@ public class Simulator {
         this.numOfEvents--;
         return e;
     }
-*/
+
 
 
     /**
